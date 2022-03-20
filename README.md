@@ -1,24 +1,18 @@
-# README
+## README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Simple API to manage Tasks.
 
-Things you may want to cover:
+Controller (handle requests)
+Model with validations ('Task' in this example)
+Active Record to persist model objects
 
-* Ruby version
+| HTTP Method  |  Path | Purpose  |
+|---|---|---|
+|  GET | /tasks  | Fetch all tasks  |
+| GET  |  /tasks/{id} | Fecth the task identified by ID  |
+|  POST | /tasks  | Create task giving: 'title', 'description' and 'priority'  |
+|DELETE| /tasks/{id}  | Delete the task identified by ID  |
 
-* System dependencies
+Priority param must be 'LOW', 'MEDIUM' or 'HIGH'.
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
