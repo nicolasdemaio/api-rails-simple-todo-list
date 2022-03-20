@@ -1,30 +1,38 @@
 class TasksController < ApplicationController
 
+  #GET /tasks
   def index
-    @products = Product.all
+    @tasks = Task.all
 
-    render json: @products
+    render json: @tasks, status: :ok
   end
 
+  #GET /tasks/{id}
   def show
-    @product = Product.find(params[:id])
-    render json: @product
+    param_id = params['id']
+    begin
+      @task = Task.find(param_id)
+      render json: @task, status: :ok
+    rescue
+      render json: TaskNotFoundException.new(param_id), status: :not_found
+    end
+
   end
 
-  # POST /books
+  # POST /tasks
   def create
-    @product = Product.new(name: params['name'], price: params['price'])
+    @task = Task.new(title: params['title'], description: params['description'], priority: params['priority'].upcase)
 
-    if @product.save
-      render json: @product, status: :created, location: @product
+    if @task.save
+      render json: @task, status: :created, location: @task
     else
-      render json: @product.errors, status: :unprocessable_entity
+      render json: @task.errors, status: :unprocessable_entity
     end
   end
 
-  # DELETE /product/id
+  # DELETE /tasks/{id}
   def destroy
-    Product.delete(params['id'])
+    Task.delete(params['id'])
     render status: :ok
   end
 
