@@ -1,0 +1,2 @@
+class TaskNotFoundException
+end
